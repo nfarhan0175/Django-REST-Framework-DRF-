@@ -5,7 +5,7 @@ The project provides a complete backend system for an e-commerce platform, inclu
 
 The APIs are designed to be consumed by web or mobile frontend applications.
 
----
+
 
 ## Features
 
