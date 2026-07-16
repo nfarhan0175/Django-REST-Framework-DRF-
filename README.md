@@ -2,10 +2,7 @@
 
 A backend-only e-commerce REST API built using **Django** and **Django REST Framework**.
 The project provides a complete backend system for an e-commerce platform, including authentication, product management, shopping cart, order processing, payment integration, and notification management.
-
 The APIs are designed to be consumed by web or mobile frontend applications.
-
-
 
 ## Features
 
@@ -20,8 +17,6 @@ The APIs are designed to be consumed by web or mobile frontend applications.
 * User profile management
 * Protected API endpoints
 
----
-
 ## Product Management
 
 * Category management
@@ -33,8 +28,6 @@ The APIs are designed to be consumed by web or mobile frontend applications.
 * Stock management
 * Discount and final price calculation
 
----
-
 ## Shopping Cart
 
 * Automatic cart creation for users
@@ -43,16 +36,12 @@ The APIs are designed to be consumed by web or mobile frontend applications.
 * Remove cart items
 * Calculate subtotal and total cart price
 
----
-
 ## Address Management
 
 * Multiple user addresses
 * Default address support
 * Address CRUD operations
 * Order delivery address management
-
----
 
 ## Order Management
 
@@ -66,16 +55,12 @@ Order workflow:
 
 ```
 Cart
- |
  ↓
 Create Order
- |
  ↓
 Create Order Items
- |
  ↓
 Update Product Stock
- |
  ↓
 Clear Cart
 ```
@@ -106,16 +91,12 @@ Payment workflow:
 
 ```
 Order
- |
  ↓
 Create Payment
- |
  ↓
 SSLCommerz Gateway
- |
  ↓
 Payment Callback
- |
  ↓
 Update Payment Status
 ```
@@ -135,8 +116,6 @@ Notification types:
 * Account
 * System
 
----
-
 # Technologies Used
 
 * Python
@@ -144,13 +123,11 @@ Notification types:
 * Django REST Framework
 * JWT Authentication (SimpleJWT)
 * SQLite Database
-* Pillow
 * django-environ
 * SSLCommerz API
 * Thunder Client (API Testing)
 * Git & GitHub
 
----
 
 # Project Structure
 
@@ -178,29 +155,17 @@ The project follows a modular Django application structure:
 
 ```
 API Request
-
      ↓
-
 Views / ViewSets
-
      ↓
-
 Serializers
-
      ↓
-
 Services & Business Logic
-
      ↓
-
 Models
-
      ↓
-
 Database
 ```
-
----
 
 # Security Features
 
@@ -213,26 +178,19 @@ Database
 * User-specific notification access
 * Payment ownership validation
 
----
-
 # Database Design
 
 An ERD diagram is included in the repository as a reference for the database design process.
-
 The final implementation has been extended with additional modules such as:
 
 * Address Management
 * Notification System
-
----
 
 # API Testing
 
 All API endpoints were tested using:
 
 **Thunder Client (VS Code Extension)**
-
----
 
 # Future Improvements
 
