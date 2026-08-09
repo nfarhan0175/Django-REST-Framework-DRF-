@@ -11,10 +11,16 @@ class Order(models.Model):
         ("delivered", "Delivered"),
         ("cancelled", "Cancelled"),
     )
+    PAYMENT_METHODS = (
+        ("COD", "Cash On Delivery"),
+        ("SSLCOMMERZ", "SSLCommerz"),
+    )
+    
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
+    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHODS,default="COD")
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"Order #{self.id}"

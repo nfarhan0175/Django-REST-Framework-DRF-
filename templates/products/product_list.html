@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Products — ShopFlow{% endblock %}
+{% block meta_description %}Browse and filter all products available on ShopFlow.{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+    <div>
+      <span class="section-eyebrow d-block">Catalog</span>
+      <h1 class="section-title mb-0">All Products</h1>
+    </div>
+    {% comment %} <p class="text-muted-custom mb-0" id="resultCount">Loading…</p> {% endcomment %}
+  </div>
+
+  <div class="row g-4">
+    <!-- ============================ Filters ============================ -->
+    <div class="col-lg-3">
+      <form id="filtersForm" class="filters-panel mb-4">
+
+        <h6>Search</h6>
+        <input type="search" class="form-control form-control-sm" id="filter-search" placeholder="Search products…">
+        <hr>
+
+        <h6>Sort by</h6>
+        <select class="form-select form-select-sm" id="filter-ordering">
+          <option value="">Newest</option>
+          <option value="price">Price: Low to High</option>
+          <option value="-price">Price: High to Low</option>
+          <option value="-average_rating">Top Rated</option>
+        </select>
+
+        <hr>
+
+        <h6>Price Range</h6>
+        <div class="row g-2">
+          <div class="col-6">
+            <label class="form-label small mb-1" for="filter-min_price">Min</label>
+            <input type="number" min="0" class="form-control form-control-sm" id="filter-min_price" placeholder="0">
+          </div>
+          <div class="col-6">
+            <label class="form-label small mb-1" for="filter-max_price">Max</label>
+            <input type="number" min="0" class="form-control form-control-sm" id="filter-max_price" placeholder="Any">
+          </div>
+        </div>
+
+        <div id="categoryFilterBlock">
+          <hr>
+          <h6>Category</h6>
+          <select class="form-select form-select-sm" id="categoryFilter">
+              <option value="">All Categories</option>
+          </select>
+        </div>
+
+        <hr>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-brand btn-sm">Apply Filters</button>
+          <button type="button" class="btn btn-outline-brand btn-sm" id="clearFiltersBtn">Clear All</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ============================ Product grid ============================ -->
+    <div class="col-lg-9">
+      <div class="row g-4" id="productGrid">
+        <!-- Populated by products.js (fetchAndRenderProductList) -->
+      </div>
+
+      <div class="mt-4" id="productPagination"></div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/products.js' %}"></script>
+{% endblock %}

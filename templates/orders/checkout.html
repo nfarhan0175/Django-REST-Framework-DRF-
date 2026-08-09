@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout — ShopFlow{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="section-title mb-4">Checkout</h1>
+
+  <form id="checkoutForm">
+    <div class="row g-4">
+
+      <!-- ============================ Shipping + Payment ============================ -->
+      <div class="col-lg-7">
+
+        <div class="filters-panel mb-4">
+          <h6>Shipping Details</h6>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label small" for="checkoutFullName">Full Name</label>
+              <input type="text" class="form-control" id="checkoutFullName" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label small" for="checkoutPhone">Phone Number</label>
+              <input type="tel" class="form-control" id="checkoutPhone" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label small" for="checkoutAddress">Street Address</label>
+              <textarea class="form-control" id="checkoutAddress" rows="2" required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small" for="checkoutCity">City</label>
+              <input type="text" class="form-control" id="checkoutCity" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label small" for="checkoutArea"> Area </label>
+                <input type="text" class="form-control" id="checkoutArea" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small" for="checkoutPostalCode">Postal Code</label>
+              <input type="text" class="form-control" id="checkoutPostalCode" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-panel">
+          <h6>Payment Method</h6>
+          <div class="d-flex flex-column gap-2">
+
+            <label class="payment-option selected d-flex align-items-center gap-3 mb-0">
+              <input type="radio" name="paymentMethod" value="COD" checked>
+              <span>
+                <i class="bi bi-cash-coin me-2"></i>
+                <strong>Cash on Delivery</strong>
+                <div class="small text-muted-custom">Pay when your order arrives.</div>
+              </span>
+            </label>
+
+            <label class="payment-option d-flex align-items-center gap-3 mb-0">
+              <input type="radio" name="paymentMethod" value="ONLINE">
+              <span>
+                <i class="bi bi-credit-card me-2"></i>
+                <strong>Online Payment</strong>
+                <div class="small text-muted-custom">Card, bKash, Nagad, or other supported gateways.</div>
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================ Order summary ============================ -->
+      <div class="col-lg-5">
+        <div class="summary-card">
+          <h2 class="h6 mb-3">Order Summary</h2>
+          <div id="checkoutSummaryList" class="mb-3">
+            <div class="skeleton mb-2" style="height:2rem;"></div>
+            <div class="skeleton mb-2" style="height:2rem;"></div>
+          </div>
+          <div id="checkoutTotals"></div>
+          <button type="submit" class="btn btn-brand w-100 mt-3">Place Order</button>
+          <a href="{% url 'cart' %}" class="btn btn-outline-brand w-100 mt-2">Back to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/payment.js' %}"></script>
+<script src="{% static 'js/checkout.js' %}"></script>
+{% endblock %}

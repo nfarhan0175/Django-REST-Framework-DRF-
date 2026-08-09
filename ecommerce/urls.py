@@ -19,15 +19,30 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from drf_spectacular.views import (
+    SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # api paths
     path('products/api/', include('products.api.urls')),
     path('accounts/api/', include('accounts.api.urls')),
     path('carts/api/', include('carts.api.urls')),
     path('orders/api/', include('orders.api.urls')),
     path("api-auth/", include("rest_framework.urls")),
-
     path('notifications/api/', include('notifications.urls')),
     path('payments/api/', include('payments.api.urls')),
-]#+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # frontend paths
+    path('seller/', include('seller.urls')),
+    path('products/', include('products.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('carts/', include('carts.urls')),
+    path('orders/', include('orders.urls')),
+    path('home/', views.home, name='home'),
+    # swagger/OpenApi
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

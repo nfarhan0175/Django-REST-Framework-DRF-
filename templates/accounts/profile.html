@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile — ShopFlow{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <nav aria-label="breadcrumb" class="breadcrumb-bar mb-4">
+    <ol class="breadcrumb mb-0">
+      {% comment %} <li class="breadcrumb-item"><a href="/">Home</a></li> {% endcomment %}
+      <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+    </ol>
+  </nav>
+
+  <div class="row g-4">
+
+    <!-- ============================ Sidebar ============================ -->
+    <div class="col-lg-3">
+      <div class="filters-panel text-center">
+        <div class="mx-auto mb-3 d-flex align-items-center justify-content-center"
+             id="profileAvatar"
+             style="width:72px;height:72px;border-radius:50%;background:var(--color-brand);color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.4rem;">
+          ?
+        </div>
+        <input type="file" id="profilePicture" class="form-control mt-2 d-none" accept="image/*">
+        <h2 class="h6 mb-1" id="profileDisplayName">Loading…</h2>
+        <p class="text-muted-custom small mb-3">ShopFlow member</p>
+        <hr>
+        <div class="d-grid gap-2">
+          <a href="/accounts/profile/" class="btn btn-brand btn-sm">
+            <i class="bi bi-person me-1"></i> Profile
+          </a>
+          <a href="{% url 'order_list' %}" class="btn btn-outline-brand btn-sm">
+            <i class="bi bi-box-seam me-1"></i> My Orders
+          </a>
+          <a href="{% url 'cart' %}" class="btn btn-outline-brand btn-sm">
+            <i class="bi bi-bag me-1"></i> Cart
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ Profile form ============================ -->
+    <div class="col-lg-9">
+      <div class="filters-panel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h1 class="section-title mb-0" style="font-size:1.4rem;">Account Details</h1>
+          <button type="button" class="btn btn-outline-brand btn-sm" id="editProfileBtn">
+            <i class="bi bi-pencil me-1"></i> Edit
+          </button>
+        </div>
+
+        <form id="profileForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="profileUsername">Username</label>
+              <input type="text" class="form-control" id="profileUsername" disabled>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="profileEmail">Email</label>
+              <input type="email" class="form-control" id="profileEmail" disabled>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="profileFirstName">First Name</label>
+              <input type="text" class="form-control" id="profileFirstName" disabled>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="profileLastName">Last Name</label>
+              <input type="text" class="form-control" id="profileLastName" disabled>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="profilePhone">Phone Number</label>
+              <input type="tel" class="form-control" id="profilePhone" disabled>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="profileCity">City</label>
+                <input type="text" class="form-control" id="profileCity" disabled>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="profileState">State</label>
+                <input type="text" class="form-control" id="profileState" disabled>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="profileCountry">Country</label>
+                <input type="text" class="form-control" id="profileCountry" disabled>
+            </div>
+          </div>
+
+          <div class="d-none d-flex gap-2 mt-4" id="saveButtonWrap">
+            <button type="submit" class="btn btn-brand">Save Changes</button>
+            <button type="button" class="btn btn-outline-brand" id="cancelEditBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

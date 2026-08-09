@@ -1,0 +1,128 @@
+{% load static %}
+{% comment %}
+  Two assumptions made here, both easy to change once you confirm details:
+
+  1. Auth state: assuming the DRF API uses token/JWT auth stored in the
+     browser (not Django sessions), so the server can't know at render time
+     whether someone is logged in. The two states below ("guest-only" /
+     "auth-only") are both rendered and toggled client-side by auth.js once
+     it checks storage for a token. If you're using session auth instead,
+     tell me and I'll switch this to `{% if request.user.is_authenticated %}`.
+
+  2. URLs: using plain hrefs (/, /products/, /cart/, /orders/,
+     /accounts/login/, /accounts/register/, /accounts/profile/) instead of
+     `{% url %}` tags, since I don't know your urls.py name= values yet.
+     Share them and I'll swap these for proper `{% url 'name' %}` tags.
+ {% endcomment %}
+<header>
+  <nav class="navbar navbar-expand-lg shopflow-nav sticky-top">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="/">Shop<span>Flow</span></a>
+
+      <!-- Mobile toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav" aria-controls="mainNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+
+        <!-- Primary links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 guest-only" >
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product_list' %}">Shop</a>
+          </li>
+        </ul> 
+        {% comment %} for customer {% endcomment %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 auth-only customer-only" style="display:none;">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product_list' %}">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link "  href="{% url 'order_list' %}">My Orders</a>
+          </li>
+        </ul>
+        {% comment %} for seller {% endcomment %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 auth-only seller-only" style="display:none;">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'seller_dashboard' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'seller_products' %}">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link "  href="{% url 'seller_orders' %}">My Orders</a>
+          </li>
+        </ul>
+
+        <!-- Search -->
+        <form class="d-flex nav-search mx-lg-3 my-2 my-lg-0" role="search" id="navSearchForm">
+          <input class="form-control" type="search" name="q" id="navSearchInput"
+                 placeholder="Search products…" aria-label="Search products">
+          <button class="btn" type="submit" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+
+        <!-- Icons / account -->
+        <ul class="navbar-nav align-items-lg-center gap-lg-1">
+
+          <li class="nav-item">
+            <a class="nav-icon-btn" href="{% url 'cart' %}" aria-label="View cart">
+              <i class="bi bi-bag"></i>
+              <span class="tag-badge" id="cartCount">0</span>
+            </a>
+          </li>
+
+          <!-- Guest state -->
+          <li class="nav-item guest-only">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item guest-only ms-lg-2">
+            <a class="btn btn-brand btn-sm" href="{% url 'register' %}">Sign up</a>
+          </li> 
+
+          <!-- Authenticated state -->
+          {% comment %} for customer {% endcomment %}
+          <li class="nav-item dropdown  auth-only  customer-only" style="display:none;">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#"
+               id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+              <span class="navUsername">Account</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="/accounts/profile/">My Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'order_list' %}">My Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger logoutBtn" type="button">Log out</button></li>
+            </ul>
+          </li>
+          {% comment %} for seller {% endcomment %}
+          <li class="nav-item dropdown  auth-only  seller-only" style="display:none;">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#"
+               id="sellerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-shop"></i>
+              <span class="navUsername">Seller Account</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sellerDropdown">
+              <li><a class="dropdown-item" href="{% url 'seller_dashboard' %}">Seller Dashboard</a></li>
+              <li><a class="dropdown-item" href="{% url 'seller_products' %}">My Products</a></li>
+              <li><a class="dropdown-item" href="{% url 'seller_orders' %}">Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger logoutBtn" type="button" >Log out</button></li>
+            </ul>
+          </li> 
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

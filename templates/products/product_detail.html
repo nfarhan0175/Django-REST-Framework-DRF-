@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Product Details — ShopFlow{% endblock %}
+
+{% block content %}
+
+{% comment %}
+  ASSUMPTION: this view's urls.py passes the product's primary key into the
+  template context as `product_id` (e.g. path("products/<int:product_id>/", ...)).
+  If you're routing by slug instead, pass `product_slug` and the JS below will
+  use that instead — just tell me which one your urls.py actually uses.
+{% endcomment %}
+<div id="productDetailRoot" data-product-id="{{ product_id }}" data-product-slug="{{ product_slug }}"></div>
+
+<div class="container py-4" id="productDetail">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="breadcrumb-bar mb-3">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="">Products Detail</a></li>
+    </ol>
+  </nav>
+
+  <div class="row g-5">
+    <!-- ============================ Gallery ============================ -->
+    <div class="col-lg-6">
+      <div class="gallery-main mb-3">
+        <img id="galleryMainImage" src="https://placehold.co/600x600?text=Loading" alt="Product image">
+      </div>
+      <div class="row g-2 gallery-thumbs" id="galleryThumbs">
+        <!-- Populated by products.js -->
+      </div>
+    </div>
+
+    <!-- ============================ Details ============================ -->
+    <div class="col-lg-6">
+      <div class="product-category mb-2" id="detailCategory">&nbsp;</div>
+      <h1 class="mb-2" id="detailName">Loading product…</h1>
+
+      <div id="detailRating" class="mb-3"></div>
+
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <span class="price-tag price-lg" id="detailPrice">—</span>
+        <span class="stock-pill" id="detailStock"><i class="bi bi-circle-fill"></i> Checking stock…</span>
+      </div>
+
+      <p class="text-muted-custom" id="detailDescription">Loading description…</p>
+
+      <hr>
+
+      <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
+        <label class="fw-semibold mb-0" for="detailQuantity">Quantity</label>
+        <div class="qty-stepper">
+          <button type="button" aria-label="Decrease quantity" onclick="stepQuantity(-1)">&minus;</button>
+          <input type="number" id="detailQuantity" value="1" min="1" inputmode="numeric">
+          <button type="button" aria-label="Increase quantity" onclick="stepQuantity(1)">&plus;</button>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-3">
+        <button type="button" class="btn btn-brand btn-lg flex-grow-1 flex-lg-grow-0" id="addToCartBtn">
+          <i class="bi bi-bag-plus me-2"></i>Add to Cart
+        </button>
+        <a href="{% url 'cart' %}" class="btn btn-outline-brand btn-lg">
+          <i class="bi bi-bag-check me-2"></i>View Cart
+        </a>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="d-flex flex-column gap-2 text-muted-custom small">
+        <span><i class="bi bi-truck me-2"></i>Fast delivery nationwide</span>
+        <span><i class="bi bi-shield-check me-2"></i>Secure checkout</span>
+        <span><i class="bi bi-arrow-repeat me-2"></i>7-day easy returns</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ Reviews ============================ -->
+  <hr class="my-5">
+  <section id="reviewsSection" class="mb-5">
+    <span class="section-eyebrow d-block">Customer Feedback</span>
+    <h2 class="section-title mb-4">Customer Reviews</h2>
+
+    <!-- Rating summary: average score + per-star breakdown, built from the fetched reviews -->
+    <div id="ratingSummary" class="rating-summary mb-4 d-none">
+      <!-- Populated by products.js (renderRatingSummary) -->
+    </div>
+
+    <!-- Review list -->
+    <div id="reviewsList" class="mb-4">
+      <!-- Populated by products.js (renderReviewsList) -->
+    </div>
+
+    <hr class="my-4">
+
+    <div class="review-form-card">
+      <h4 class="mb-3" style="font-size:1.1rem;">Write a Review</h4>
+
+      <form id="reviewForm">
+        <div class="mb-3">
+          <label class="form-label d-block">Your Rating</label>
+          <span id="reviewStarPicker" class="star-picker" role="radiogroup" aria-label="Star rating">
+            <i class="bi bi-star-fill" data-value="1"></i>
+            <i class="bi bi-star-fill" data-value="2"></i>
+            <i class="bi bi-star-fill" data-value="3"></i>
+            <i class="bi bi-star-fill" data-value="4"></i>
+            <i class="bi bi-star-fill" data-value="5"></i>
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="reviewComment">Comment</label>
+          <textarea
+            class="form-control"
+            id="reviewComment"
+            rows="4"
+            placeholder="Share your experience..."
+            required
+          ></textarea>
+        </div>
+
+        <button class="btn btn-brand" type="submit">
+          <i class="bi bi-send me-1"></i> Submit Review
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================ Related products ============================ -->
+  <section class="py-5 mt-3">
+    <span class="section-eyebrow d-block">You might also like</span>
+    <h2 class="section-title mb-4">Related Products</h2>
+    <div class="row g-4" id="relatedGrid"></div>
+  </section>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/products.js' %}"></script>
+{% endblock %}

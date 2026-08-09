@@ -1,6 +1,8 @@
-# from django.urls import path, include
+from django.urls import path, include
+from . import views
 
-# urlpatterns = [
-#     path("api-auth/", include("rest_framework.urls")),
-#     path('logout/', LogoutView.as_view(), name='logout'),
-# ]
+urlpatterns = [
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
+]

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ShopFlow — Shop Quality Products Online{% endblock %}
+{% block meta_description %}Browse new arrivals and shop quality products with fast delivery on ShopFlow.{% endblock %}
+
+{% block content %}
+
+<!-- ============================== Hero ============================== -->
+<section class="hero-section py-5">
+  <div class="container py-4">
+    <div class="row align-items-center gy-5">
+
+      <div class="col-lg-6">
+        <span class="section-eyebrow d-inline-block mb-3">New season, new arrivals</span>
+        <h1 class="mb-3">Everything you need, <br class="d-none d-lg-block">priced fairly.</h1>
+        <p class="lead mb-4">
+          Browse thousands of products across every category — from everyday
+          essentials to the things you didn't know you needed. Fast delivery,
+          easy returns, always.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a href="/products/product_list/" class="btn btn-brand btn-lg">
+            Shop Now <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+          <a href="#featured" class="btn btn-outline-brand btn-lg">See What's New</a>
+        </div>
+        <div class="hero-trust-strip d-flex flex-wrap gap-4">
+          <span><i class="bi bi-truck"></i>Fast delivery</span>
+          <span><i class="bi bi-shield-check"></i>Secure checkout</span>
+          <span><i class="bi bi-arrow-repeat"></i>Easy returns</span>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-art" aria-hidden="true">
+          <div class="tag-shape tag-1"></div>
+          <div class="tag-shape tag-2"></div>
+          <div class="tag-hole"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= Shop by Category ========================= -->
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2" id="categoryChips">
+      <!-- Populated by products.js from the categories seen in featured products -->
+      <span class="skeleton d-inline-block" style="width:90px;height:2.2rem;border-radius:999px;"></span>
+      <span class="skeleton d-inline-block" style="width:110px;height:2.2rem;border-radius:999px;"></span>
+      <span class="skeleton d-inline-block" style="width:80px;height:2.2rem;border-radius:999px;"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= Featured Products ========================= -->
+<section class="py-5" id="featured">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+      <div>
+        <span class="section-eyebrow d-block">New arrivals</span>
+        <h2 class="section-title mb-0">Fresh in the shop</h2>
+      </div>
+      <a href="{% url 'product_list' %}" class="btn btn-outline-brand">View all products</a>
+    </div>
+
+    <div class="row g-4" id="featuredGrid">
+      <!-- Populated by products.js (initHomePage) -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================ Value props ============================ -->
+<section class="py-5 border-top" style="border-color: var(--color-line) !important;">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-3 col-6">
+        <i class="bi bi-truck fs-2" style="color: var(--color-brand);"></i>
+        <p class="fw-semibold mb-0 mt-2">Fast Delivery</p>
+        <p class="text-muted-custom small mb-0">Nationwide shipping</p>
+      </div>
+      <div class="col-md-3 col-6">
+        <i class="bi bi-shield-check fs-2" style="color: var(--color-brand);"></i>
+        <p class="fw-semibold mb-0 mt-2">Secure Payment</p>
+        <p class="text-muted-custom small mb-0">Your data stays safe</p>
+      </div>
+      <div class="col-md-3 col-6">
+        <i class="bi bi-arrow-repeat fs-2" style="color: var(--color-brand);"></i>
+        <p class="fw-semibold mb-0 mt-2">Easy Returns</p>
+        <p class="text-muted-custom small mb-0">Hassle-free process</p>
+      </div>
+      <div class="col-md-3 col-6">
+        <i class="bi bi-headset fs-2" style="color: var(--color-brand);"></i>
+        <p class="fw-semibold mb-0 mt-2">24/7 Support</p>
+        <p class="text-muted-custom small mb-0">We're always here</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/products.js' %}"></script>
+{% endblock %}

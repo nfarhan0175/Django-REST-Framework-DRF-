@@ -12,4 +12,4 @@ class CreatePaymentSerializer(serializers.Serializer):
 
 class PaymentSuccessSerializer(serializers.Serializer):
     tran_id = serializers.CharField()
-    val_id = serializers.CharField(required=False)
+    val_id = serializers.CharField()

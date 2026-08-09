@@ -1,0 +1,80 @@
+{% load static %}
+<footer class="shopflow-footer">
+  <div class="ticket-edge"></div>
+
+  <div class="container py-5">
+    <div class="row gy-4">
+
+      <!-- Brand blurb -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand mb-3">Shop<span>Flow</span></div>
+        <p class="mb-3">
+          Quality products, fair prices, and fast delivery — everything you
+          need for your everyday shopping, in one place.
+        </p>
+        <div>
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>Shop</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/products/">All Products</a></li>
+          <li class="mb-2"><a href="/cart/">Cart</a></li>
+          <li class="mb-2"><a href="/orders/">Track Order</a></li>
+        </ul>
+      </div>
+
+      <!-- Account -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>Account</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/accounts/login/">Login</a></li>
+          <li class="mb-2"><a href="/accounts/register/">Register</a></li>
+          <li class="mb-2"><a href="/accounts/profile/">My Profile</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>Support</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#">Help Center</a></li>
+          <li class="mb-2"><a href="#">Returns</a></li>
+          <li class="mb-2"><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>Stay Updated</h6>
+        <p class="small mb-2">Deals, straight to your inbox.</p>
+        <form class="d-flex newsletter-form" id="newsletterForm">
+          <label for="newsletterEmail" class="visually-hidden">Email address</label>
+          <input type="email" class="form-control form-control-sm" id="newsletterEmail"
+                 placeholder="you@example.com" required>
+          <button class="btn btn-accent btn-sm" type="submit">Join</button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+      <span>&copy; <span id="footerYear"></span> ShopFlow. All rights reserved.</span>
+      <span class="mt-2 mt-md-0">
+        <a href="#" class="me-3">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Small inline enhancement: no need for a dedicated JS file for one line.
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Orders — ShopFlow{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+  <nav aria-label="breadcrumb" class="breadcrumb-bar mb-3">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+    </ol>
+  </nav>
+
+  <h1 class="section-title mb-4">My Orders</h1>
+
+  <div id="ordersList">
+    <!-- Populated by orders.js -->
+  </div>
+
+  <div class="mt-4" id="ordersPagination"></div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/order.js' %}"></script>
+{% endblock %}

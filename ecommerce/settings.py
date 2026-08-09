@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     "rest_framework_simplejwt.token_blacklist",
-    'accounts',
+    # 'accounts',
+    'accounts.apps.AccountsConfig',
     'products',
     'orders',
     'carts',
     'payments',
     'notifications',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -107,9 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'accounts.User'
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ]
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=5),
@@ -143,3 +146,17 @@ environ.Env.read_env(BASE_DIR / ".env")
 SSL_STORE_ID = env("SSL_STORE_ID")
 SSL_STORE_PASSWORD = env("SSL_STORE_PASSWORD")
 SSL_SANDBOX = env.bool("SSL_SANDBOX", default=True)
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "ShopFlow E-commerce API",
+    "DESCRIPTION": "API documentation for the ShopFlow multi-vendor e-commerce platform.",
+    "VERSION": "1.0.0",
+
+    "SERVE_INCLUDE_SCHEMA": False,
+
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+    },
+}

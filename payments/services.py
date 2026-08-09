@@ -46,3 +46,17 @@ def create_payment(order, payment_method):
     if payment_method == "SSLCOMMERZ":
         gateway_response = initiate_sslcommerz(payment)
     return payment, gateway_response    
+
+def validate_payment(val_id):
+    if settings.SSL_SANDBOX:
+        url = "https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php"
+    else:
+        url = "https://securepay.sslcommerz.com/validator/api/validationserverAPI.php"
+    params = {
+        "val_id": val_id,
+        "store_id": settings.SSL_STORE_ID,
+        "store_passwd": settings.SSL_STORE_PASSWORD,
+        "format": "json",
+    }
+    response = requests.get(url, params=params)
+    return response.json()

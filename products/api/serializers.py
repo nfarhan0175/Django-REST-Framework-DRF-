@@ -16,6 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
     images = ProductImageSerializer(many=True, read_only=True)
     seller = serializers.ReadOnlyField(source="seller.username")
+    category_name = serializers.ReadOnlyField(source="category.name")
     class Meta:
         model = models.ProductList
         fields = "__all__"

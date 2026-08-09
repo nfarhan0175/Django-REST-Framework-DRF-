@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your Cart — ShopFlow{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+  <h1 class="section-title mb-4">Your Cart</h1>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="filters-panel" id="cartItems">
+        <!-- Populated by cart.js -->
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="summary-card" id="cartSummary">
+        <div id="cartTotal"></div>
+        <a href="{% url 'checkout' %}" class="btn btn-brand w-100 mt-3"> Proceed to Checkout </a>
+        <!-- Populated by cart.js -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}
