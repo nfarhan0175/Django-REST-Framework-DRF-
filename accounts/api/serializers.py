@@ -57,4 +57,3 @@ class ProfileSerializer(serializers.ModelSerializer):
             "username", "email", "first_name", "last_name", "phone",
             "city", "state", "country", "role", "profile_picture",
         ]
-# https://github.com/CryceTruly/incomeexpensesapi/blob/master/authentication/serializers.py            
