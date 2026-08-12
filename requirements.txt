@@ -1,0 +1,8 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+django-environ
+psycopg[binary]
+whitenoise
+gunicorn
+drf-spectacular
