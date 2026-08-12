@@ -254,6 +254,14 @@ python manage.py runserver
 **Interactive testing** is also available through Swagger UI.
 
 ---
+# ShopFlow E-commerce API
+
+## Live Demo
+https://django-rest-framework-drf-2.onrender.com/home/
+
+## API Documentation
+https://django-rest-framework-drf-2.onrender.com/api/docs/
+---
 
 ## Future Plans
 
