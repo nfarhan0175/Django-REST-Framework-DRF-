@@ -211,7 +211,7 @@ async function loadReviews(productId){
     }
 
 }
-
+ 
 function setupStarPicker(){
     const stars =document.querySelectorAll("#reviewStarPicker i");
     if(!stars.length)

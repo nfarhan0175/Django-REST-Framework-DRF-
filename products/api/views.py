@@ -50,14 +50,17 @@ class ProductImageViewSet(viewsets.ModelViewSet):
         return models.ProductImage.objects.none()
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = models.Review.objects.select_related(
-        "reviewer",
-        "product"
-    )
     serializer_class = serializers.ReviewSerializer
     permission_classes = [permissions.IsReviewOwnerOrReadOnly]
+    def get_queryset(self):
+        queryset = models.Review.objects.select_related(
+            "reviewer", "product")
+        product_id = self.request.query_params.get("product")
+        if product_id:
+            queryset = queryset.filter(product_id=product_id)
+        return queryset
     def perform_create(self, serializer):
-        serializer.save(reviewer=self.request.user)     
+        serializer.save(reviewer=self.request.user)
 
 class SellerProductViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ProductSerializer

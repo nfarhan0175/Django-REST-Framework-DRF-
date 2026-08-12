@@ -1,0 +1,46 @@
+email + password
+      ↓
+TokenObtainPairView
+      ↓
+access token + refresh token
+================================
+refresh token
+      ↓
+TokenRefreshView
+      ↓
+new access token
+
+bugs to fix:
+major:
+      1. login authentication kicukkon por chole jai
+      2. payment sslcommerz hole 2bar input jacce + cart theke remove hoi na
+2. main search option not working
+3. password eye not working
+
+
+steps to connect postgres:
+1. psql --version → Get-Service postgresql* → psql -U postgres -h localhost
+2. CREATE USER project_bame_user WITH PASSWORD 'YOUR_PASSWORD';
+3. CREATE DATABASE shopflow_db OWNER shopflow_user;
+4. psql -U shopflow_user -d shopflow_db -h localhost
+6. Get-ChildItem manage.py
+6. venv activate
+7. pip install "psycopg[binary]" → pip show psycopg
+8. pip show django-environ
+9. .env te db releted info save, setting database change
+10. python manage.py check, python manage.py migrate
+ 
+chatgpt chat summary: https://chatgpt.com/s/t_6a78c49041288191b4f8fc5ea9cb5de7
+
+ecommerce-
+|-accounts
+|-carts
+|-media
+|-notifications (eta sudu backend korci ekn r kicu korbo na)
+|-orders
+|-payments
+|-products
+|-static
+     |-cs
+     |-js(ekane js er sob file raksi kono folder nai but seller er gula rakte pari)
+|-templates- navbar,index,base,footer egulu common tarpor folder for products,orders,carts,accounts

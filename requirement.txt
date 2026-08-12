@@ -2,3 +2,4 @@ Django
 djangorestframework
 djangorestframework-simplejwt
 django-environ
+psycopg
