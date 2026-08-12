@@ -1,7 +1,6 @@
 # Django E-Commerce Platform
 
-A full-stack e-commerce web application built with **Django**, **Django REST Framework**, **JavaScript**, and **PostgreSQL**. Developed as a portfolio project to explore real-world e-commerce architecture, REST API design, authentication, database modeling, and frontend-backend integration.
-
+A full-stack e-commerce web application built with **Django**, **Django REST Framework**, **JavaScript**, and **PostgreSQL**. Developed as a portfolio project to explore real-world e-commerce architecture, REST API design, authentication, database modeling, and frontend-backend integration. 
 The platform includes JWT authentication, product management, a shopping cart, order processing, payments, product reviews, search and filtering, discount management, and seller functionality. Some features are still under active development.
 ---
 
@@ -25,7 +24,7 @@ The platform includes JWT authentication, product management, a shopping cart, o
 
 | Home & Product Listing | Product Details & Cart | Seller Dashboard |
 |---|---|---|
-| ![Home Page](docs/home-page.png) | ![Product Details](docs/product-details.png) | ![Seller Dashboard](docs/seller-dashboard.png) |
+| ![Home Page](images/home.jpg) | ![Product Details](images/product-detail.jpg) | ![Seller Dashboard](images/seller-dashboard.jpg) |
 
 ---
 
@@ -105,22 +104,26 @@ The platform includes JWT authentication, product management, a shopping cart, o
 
 The application follows a modular Django architecture with a REST API backend and a JavaScript frontend.
 
-![System Architecture](docs/system-architecture.png)
+![System Architecture](images/system-architecture.png)
 
 ## Database Design / ERD
 
 The schema models relationships between users, products, carts, orders, payments, and other core entities.
 
-![Database ERD](docs/database-erd.png)
+![Database ERD](images/database-erd.png)
 
-## API Documentation
+### API Documentation
+Interactive API documentation is available through Swagger UI and ReDoc. The underlying OpenAPI schema is also available for direct access.
 
-Interactive API docs are available via Swagger/OpenAPI, including endpoints, parameters, request bodies, auth requirements, and response formats.
+| Resource | URL |
+|---|---|
+| **OpenAPI Schema** | `/api/schema/` |
+| **Swagger UI** | `/api/docs/` |
+| **ReDoc** | `/api/redoc/` |
 
-- **Swagger UI:** `/api/docs/`
-- **ReDoc:** `/api/redoc/`
-
-> Replace with the actual routes configured in your project if different.
+- **OpenAPI Schema:** Provides the machine-readable API specification.
+- **Swagger UI:** Interactive API documentation for exploring and testing endpoints.
+- **ReDoc:** Alternative interface for browsing and reading the API documentation.
 
 ---
 
@@ -176,7 +179,6 @@ DB_PORT=5432
 SSLCOMMERZ_STORE_ID=your_store_id
 SSLCOMMERZ_STORE_PASSWORD=your_store_password
 ```
-> Never commit `.env` files or secret credentials to GitHub.
 
 ### 6. Verify Django settings
 Ensure the project reads environment variables via `django-environ` and that the database points to PostgreSQL:
