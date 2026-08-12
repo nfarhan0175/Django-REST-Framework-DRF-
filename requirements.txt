@@ -7,3 +7,4 @@ whitenoise
 gunicorn
 drf-spectacular
 requests
+Pillow
