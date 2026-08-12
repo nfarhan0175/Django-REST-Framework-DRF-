@@ -1,7 +1,9 @@
 # Django E-Commerce Platform
 
-A full-stack e-commerce web application built with **Django**, **Django REST Framework**, **JavaScript**, and **PostgreSQL**. Developed as a portfolio project to explore real-world e-commerce architecture, REST API design, authentication, database modeling, and frontend-backend integration. 
+A full-stack e-commerce web application built with Django, Django REST Framework, JavaScript, and PostgreSQL. Developed as a portfolio project to explore real-world e-commerce architecture, REST API design, authentication, database modeling, and frontend-backend integration.
+
 The platform includes JWT authentication, product management, a shopping cart, order processing, payments, product reviews, search and filtering, discount management, and seller functionality. Some features are still under active development.
+
 ---
 
 ## Table of Contents
